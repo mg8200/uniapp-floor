@@ -1,8 +1,9 @@
 <template>
 	<view>
 		<!-- 轮播图 -->
-		<view class="banner">
-			<my-swiper url="http://www.minggang.top:8000/home/getBanner"></my-swiper>
+		<view class="banner" v-if="sipwerList.length>0">
+			<my-swiper dots :list="sipwerList" :interval="5000" imgKey="imgUrl" autoplay :crown="true" :loop="true" :shadow='true'
+			 :height='129' :previousMargin="120" :nextMargin='120' :imgRadius="5" />
 		</view>
 		<!-- 服务介绍 -->
 		<view class="service-introduced">
@@ -38,13 +39,13 @@
 				</view>
 			</view>
 			<view class="second-pick-flowers-list top">
-				<view class="second-pick-flowers-item" v-for="item in secondPickFlowersList.slice(0,3)" :key="item.id" @click="goquick(item)">
+				<view class="second-pick-flowers-item" v-for="(item,i) of secondPickFlowersList" :key="item.sid"  @click="goquick(item)">
 					<image :src="'http://www.minggang.top:8000'+item.src" mode=""></image>
 					<text>{{item.title}}</text>
 				</view>
 			</view>
 			<view class="second-pick-flowers-list bottom">
-				<view class="second-pick-flowers-item" v-for="item in secondPickFlowersList.slice(3)" :key="item.id" @click="goquick(item)">
+				<view class="second-pick-flowers-item" v-for="item in secondPickFlowersList_2" :key="item.sid" @click="goquick(item)">
 					<view class="text">{{item.title}}</view>
 					<image :src="'http://www.minggang.top:8000'+item.src" mode=""></image>
 				</view>
@@ -67,20 +68,33 @@
 		},
 		data() {
 			return {
+				sipwerList: [],
 				// 从类型快速选择鲜花列表
 				fastTypeList: [],
-				// 一秒选花列表
+				// 一秒选花列表,第一段
 				secondPickFlowersList: [],
+				// 一秒选花列表,第er段
+				secondPickFlowersList_2:[],
 				// 模块数据
-				moduleList:[]
+				moduleList: []
 			}
 		},
 		onLoad() {
 			this.getFastTypeList();
 			this.getSecondPickFlowersList();
-			this.getModuleList()
+			this.getModuleList();
+			this.getSipwerList()
 		},
 		methods: {
+			// 获取轮播图数据
+			getSipwerList() {
+				uni.request({
+					url: "https://www.minggang.top:444/home/getBanner",
+					success: (res) => {
+						this.sipwerList = res.data.data;
+					}
+				})
+			},
 			// 获取类型快速选择鲜花列表
 			getFastTypeList() {
 				uni.request({
@@ -98,32 +112,38 @@
 					methods: "get",
 					url: "https://www.minggang.top:444/home/imgNav",
 					success: (res) => {
-						this.secondPickFlowersList = res.data.data
+						
+						let secondPickFlowersList = res.data.data;
+						secondPickFlowersList.forEach(item=>{
+							item.sid=item.id
+						})
+						this.secondPickFlowersList=secondPickFlowersList.slice(0,3);
+						this.secondPickFlowersList_2=secondPickFlowersList.slice(3);
 					}
 				})
 			},
 			// 获取模块数据
-			getModuleList(){
+			getModuleList() {
 				uni.request({
-					methods:"GET",
-					url:"https://www.minggang.top:444/home/getGoodsType",
+					methods: "GET",
+					url: "https://www.minggang.top:444/home/getGoodsType",
 					success: (res) => {
-						this.moduleList=res.data.data
+						this.moduleList = res.data.data
 					}
 				})
 			},
 			// 前往商品列表
-			goGoodList(val){
+			goGoodList(val) {
 				let id = val.good_type_id
 				uni.navigateTo({
-					url:`../goodsList/goodsList?tid=${id}&name=${val.name}`
+					url: `../good/goodsList?tid=${id}&name=${val.name}`
 				})
 			},
-			goquick(val){
-				console.log(val)
-				let id = val.id;
+			goquick(val) {
+				let id=val.sid;
+				let title=val.title;
 				uni.navigateTo({
-					url:`../goodsList/quickSelect?tid=${id}&name=${val.title}`
+						url: `../good/quickSelect?tid=${id}&name=${title}`
 				})
 			}
 		}
@@ -132,8 +152,10 @@
 
 <style lang="scss">
 	.banner {
+		padding-top: 20rpx;
 		width: 100%;
-		height: 11.875rem;
+		height: 8.0625rem;
+		background-color: #fff;
 	}
 
 	.service-introduced {
@@ -157,9 +179,10 @@
 	.fast-type-list {
 		background-color: #fff;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-around;   
 		align-items: center;
 		font-size: 28rpx;
+		padding: 22rpx 0;
 
 		.fast-type-item {
 			.image {
@@ -258,7 +281,6 @@
 					padding-bottom: .1rem;
 				}
 			}
-
 		}
 	}
 </style>

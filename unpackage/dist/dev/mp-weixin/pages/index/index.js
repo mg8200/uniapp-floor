@@ -104,17 +104,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.secondPickFlowersList.slice(0, 3)
-  var l1 = _vm.secondPickFlowersList.slice(3)
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        l0: l0,
-        l1: l1
-      }
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -146,7 +135,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var mySwiper = function mySwiper() {__webpack_require__.e(/*! require.ensure | components/public/swiper/swiper */ "components/public/swiper/swiper").then((function () {return resolve(__webpack_require__(/*! ../../components/public/swiper/swiper.vue */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniModule = function uniModule() {__webpack_require__.e(/*! require.ensure | pages/index/module */ "pages/index/module").then((function () {return resolve(__webpack_require__(/*! ./module.vue */ 52));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var mySwiper = function mySwiper() {__webpack_require__.e(/*! require.ensure | components/public/swiper/swiper */ "components/public/swiper/swiper").then((function () {return resolve(__webpack_require__(/*! ../../components/public/swiper/swiper.vue */ 61));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniModule = function uniModule() {__webpack_require__.e(/*! require.ensure | pages/index/module */ "pages/index/module").then((function () {return resolve(__webpack_require__(/*! ./module.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 
@@ -215,10 +205,13 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
+      sipwerList: [],
       // 从类型快速选择鲜花列表
       fastTypeList: [],
-      // 一秒选花列表
+      // 一秒选花列表,第一段
       secondPickFlowersList: [],
+      // 一秒选花列表,第er段
+      secondPickFlowersList_2: [],
       // 模块数据
       moduleList: [] };
 
@@ -227,36 +220,52 @@ __webpack_require__.r(__webpack_exports__);
     this.getFastTypeList();
     this.getSecondPickFlowersList();
     this.getModuleList();
+    this.getSipwerList();
   },
   methods: {
+    // 获取轮播图数据
+    getSipwerList: function getSipwerList() {var _this = this;
+      uni.request({
+        url: "https://www.minggang.top:444/home/getBanner",
+        success: function success(res) {
+          _this.sipwerList = res.data.data;
+        } });
+
+    },
     // 获取类型快速选择鲜花列表
-    getFastTypeList: function getFastTypeList() {var _this = this;
+    getFastTypeList: function getFastTypeList() {var _this2 = this;
       uni.request({
         method: "GET",
         url: "https://www.minggang.top:444/home/homeNav",
         success: function success(res) {
-          _this.fastTypeList = res.data.data;
+          _this2.fastTypeList = res.data.data;
         } });
 
     },
 
     // 获取一秒选花列表
-    getSecondPickFlowersList: function getSecondPickFlowersList() {var _this2 = this;
+    getSecondPickFlowersList: function getSecondPickFlowersList() {var _this3 = this;
       uni.request({
         methods: "get",
         url: "https://www.minggang.top:444/home/imgNav",
         success: function success(res) {
-          _this2.secondPickFlowersList = res.data.data;
+
+          var secondPickFlowersList = res.data.data;
+          secondPickFlowersList.forEach(function (item) {
+            item.sid = item.id;
+          });
+          _this3.secondPickFlowersList = secondPickFlowersList.slice(0, 3);
+          _this3.secondPickFlowersList_2 = secondPickFlowersList.slice(3);
         } });
 
     },
     // 获取模块数据
-    getModuleList: function getModuleList() {var _this3 = this;
+    getModuleList: function getModuleList() {var _this4 = this;
       uni.request({
         methods: "GET",
         url: "https://www.minggang.top:444/home/getGoodsType",
         success: function success(res) {
-          _this3.moduleList = res.data.data;
+          _this4.moduleList = res.data.data;
         } });
 
     },
@@ -264,14 +273,14 @@ __webpack_require__.r(__webpack_exports__);
     goGoodList: function goGoodList(val) {
       var id = val.good_type_id;
       uni.navigateTo({
-        url: "../goodsList/goodsList?tid=".concat(id, "&name=").concat(val.name) });
+        url: "../good/goodsList?tid=".concat(id, "&name=").concat(val.name) });
 
     },
     goquick: function goquick(val) {
-      console.log(val);
-      var id = val.id;
+      var id = val.sid;
+      var title = val.title;
       uni.navigateTo({
-        url: "../goodsList/quickSelect?tid=".concat(id, "&name=").concat(val.title) });
+        url: "../good/quickSelect?tid=".concat(id, "&name=").concat(title) });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

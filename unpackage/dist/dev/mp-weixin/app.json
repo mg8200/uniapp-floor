@@ -4,8 +4,10 @@
     "pages/shopping-car/shopping-car",
     "pages/information/information",
     "pages/mine/mine",
-    "pages/goodsList/goodsList",
-    "pages/goodsList/quickSelect"
+    "pages/good/goodDetail",
+    "pages/good/quickSelect",
+    "pages/good/goodsList",
+    "pages/information/informationDetial"
   ],
   "subPackages": [],
   "window": {

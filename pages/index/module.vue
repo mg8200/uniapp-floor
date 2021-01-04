@@ -7,7 +7,7 @@
 			<text></text>
 		</view>
 		<view class="pro-list">
-			<view class="pro-item" v-for="item in dataList">
+			<view class="pro-item" v-for="item in dataList" @click="goGoodDetail(item)" :key="item.id">
 				<image :src="'http://www.minggang.top:8000'+item.src" lazy-load="true"></image>
 				<view class="one-txt-cut">
 					{{item.name}}
@@ -52,6 +52,12 @@
 					}
 				})
 			},
+			// 前往商品详情页
+			goGoodDetail(val){
+				uni.navigateTo({
+					url:"../good/goodDetail?id="+val.id
+				})
+			}
 		},
 		mounted() {
 			this.getDataList()

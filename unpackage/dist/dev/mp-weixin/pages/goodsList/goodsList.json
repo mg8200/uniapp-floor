@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "uni-render-good-list": "/pages/goodsList/renderGoodList"
-  }
-}
