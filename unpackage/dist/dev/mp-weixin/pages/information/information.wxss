@@ -1,0 +1,179 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.content {
+  background-color: #fff;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.left {
+  width: 160rpx;
+  height: 100%;
+  background-color: #fff;
+}
+.left .left-item {
+  position: relative;
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 40rpx 22rpx;
+  overflow: hidden;
+  color: #323233;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.left .active::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 4px;
+  height: 16px;
+  background-color: #ee0a24;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: '';
+}
+.left .active {
+  color: #ee0a24;
+}
+.right {
+  width: 73%;
+  background-color: #fff;
+  padding: .6875rem;
+}
+.right .information-top .title {
+  border-bottom: 1px solid #eee;
+  padding: .3125rem 0;
+}
+.right .information-top .title ._h3 {
+  height: 60rpx;
+  text-align: center;
+}
+.right .information-top .title ._h3 text {
+  display: block;
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  color: #d7000f;
+  font-weight: 700;
+  line-height: 100%;
+}
+.information-list {
+  padding: .9375rem 0;
+  padding-top: .3125rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.information-list .information-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  border-bottom: .0625rem solid #eee;
+  padding: .3125rem 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.information-list .information-item .img {
+  width: 30%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.information-list .information-item .img image {
+  width: 100%;
+}
+.information-list .information-item .content {
+  width: 70%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: .3125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.information-list .information-item .content .item-title {
+  color: #333;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: .9375rem;
+  overflow: hidden;
+}
+.information-list .information-item .content .text {
+  padding-top: .5rem;
+  font-size: .625rem;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.information-list .information-item .content .lab_grp {
+  margin-top: .5rem;
+  height: 1.5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  line-height: 1.5rem;
+}
+.information-list .information-item .content .lab_grp .tag {
+  font-size: .625rem;
+}
+.information-list .information-item .content .lab_grp .viewed {
+  padding-left: 0.9375rem;
+}
+.information-list .information-item .content .lab_grp .viewed .icon {
+  width: 16px;
+  height: 12px;
+  background: url(https://static.chinapp.com/home/img/bg.png) -579px -43px no-repeat;
+  float: left;
+  margin: 6px 5px 0 0;
+}
+.information-list .information-item .content .lab_grp .viewed .count {
+  font-size: 20rpx;
+}
+.information-list .information-item .content .time {
+  font-size: .625rem;
+  line-height: 1.5rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: .9375rem;
+}
+
