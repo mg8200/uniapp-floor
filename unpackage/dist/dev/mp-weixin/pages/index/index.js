@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var mySwiper = function mySwiper() {__webpack_require__.e(/*! require.ensure | components/public/swiper/swiper */ "components/public/swiper/swiper").then((function () {return resolve(__webpack_require__(/*! ../../components/public/swiper/swiper.vue */ 61));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniModule = function uniModule() {__webpack_require__.e(/*! require.ensure | pages/index/module */ "pages/index/module").then((function () {return resolve(__webpack_require__(/*! ./module.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var mySwiper = function mySwiper() {__webpack_require__.e(/*! require.ensure | components/public/swiper/swiper */ "components/public/swiper/swiper").then((function () {return resolve(__webpack_require__(/*! ../../components/public/swiper/swiper.vue */ 71));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniModule = function uniModule() {__webpack_require__.e(/*! require.ensure | pages/index/module */ "pages/index/module").then((function () {return resolve(__webpack_require__(/*! ./module.vue */ 78));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

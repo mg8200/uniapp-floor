@@ -16,6 +16,7 @@
 	@import "./static/css/iconfont.css";
 
 	page {
+		height: 100%;
 		color: #555;
 		background-color: #E9ECF0;
 	}

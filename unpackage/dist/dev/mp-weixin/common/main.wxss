@@ -259,6 +259,7 @@
     content: "\e690";
 }
 page {
+	height: 100%;
 	color: #555;
 	background-color: #E9ECF0;
 }

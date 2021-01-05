@@ -7,7 +7,8 @@
     "pages/good/goodDetail",
     "pages/good/quickSelect",
     "pages/good/goodsList",
-    "pages/information/informationDetial"
+    "pages/information/informationDetial",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
